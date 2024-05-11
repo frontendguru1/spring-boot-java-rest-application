@@ -15,6 +15,11 @@ public class JobController {
     @Autowired
     private IJobService jobService;
 
+    @GetMapping("auth-failed")
+    public String authFailed() {
+        return "Auth-Failed";
+    }
+
     @GetMapping("jobs")
     public List<JobPost> home() {
         System.out.println("Get all job request");
@@ -42,5 +47,16 @@ public class JobController {
     public String deleteJob(@PathVariable int jobId) {
         jobService.deleteJobPost(jobId);
         return "Deleted";
+    }
+
+    @GetMapping("load")
+    public String loadJob() {
+        jobService.loadJobData();
+        return "success";
+    }
+
+    @GetMapping("job/search/{keyword}")
+    public List<JobPost> searchByKeyword(@PathVariable String keyword) {
+        return jobService.search(keyword);
     }
 }

@@ -11,4 +11,6 @@ public interface IJobService {
     JobPost getJob(int jobId);
     void updateJobPost(JobPost jobPost);
     void deleteJobPost(int jobId);
+    void loadJobData();
+    List<JobPost> search(String keyword);
 }
